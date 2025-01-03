@@ -20,7 +20,7 @@ Deno.serve({
       } else {
         // If the request is a normal HTTP request,
         // we serve the client HTML file.
-        const file = await Deno.open("./index.html", { read: true });
+        const file = await Deno.open("./land.html", { read: true });
         return new Response(file.readable);
       }
     },
