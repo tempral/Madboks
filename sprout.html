@@ -22,7 +22,7 @@
       document.getElementById("connect").addEventListener(
         "click",
         () => {
-          socket = new WebSocket("wss://localhost:8000");
+          socket = new WebSocket("wss://sprout.deno.dev/");
           socket.addEventListener("open", () => {
             document.getElementById("status").textContent =
               "Connected to WebSocket server";
