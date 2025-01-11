@@ -1,6 +1,10 @@
+import { serveFile } from "jsr:@std/http/file-server";
+
 Deno.serve((req) => {
   if (req.headers.get("upgrade") !== "websocket") {
-    return new Response(null, { status: 501 });
+
+    return serveFile(req, "./sprout.html");
+    //return new Response(null, { status: 501 });
   }
   const { socket, response } = Deno.upgradeWebSocket(req);
 
@@ -8,9 +12,9 @@ Deno.serve((req) => {
     console.log("A client just connected!");
   });
   socket.addEventListener("message", (event) => {
-    if (event.data === "hey") {
-      socket.send("yo");
-    }
+    //if (event.data === "hey") {
+      socket.send(event.data);
+   // }
   });
   socket.addEventListener("close", () => {
     console.log("Disconnected!");
